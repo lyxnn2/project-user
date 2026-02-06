@@ -1,6 +1,12 @@
-local plr = game.Players.LocalPlayer
-local Level = plr:GetAttribute('Level')
-local Present = plr:GetAttribute('Presents26')
+repeat task.wait() until game:IsLoaded()
+if not game:IsLoaded() then game.Loaded:Wait() end
 
-
-print('👤Level: '.. tostring(Level)..' '.. '🎁Winter Present: '.. tostring(Present))
+while true do task.wait(5)
+  local plr = game.Players.LocalPlayer
+  local Level = plr:GetAttribute('Level')
+  local Present = plr:GetAttribute('Presents26')
+  
+  
+  local result = ('👤Level: '.. tostring(Level)..' '.. '🎁Winter Present: '.. tostring(Present))
+  _G.Horst_SetDescription(result)
+end
