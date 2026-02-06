@@ -1,0 +1,6 @@
+local plr = game.Players.LocalPlayer
+local Level = plr:GetAttribute('Level')
+local Present = plr:GetAttribute('Presents26')
+
+
+print('👤Level: '.. tostring(Level)..' '.. '🎁Winter Present: '.. tostring(Present))
