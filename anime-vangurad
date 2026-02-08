@@ -7,7 +7,7 @@ while true do task.wait(5)
     local Present = plr:GetAttribute('Presents26')
     
     local result = ('👤Level: '.. tostring(Level)..' '.. '🎁Winter Present: '.. tostring(Present))
-    _G.Horst_SetDescription(result)
+
 
 
     local ReplicatStorage = game:GetService("ReplicatedStorage")
