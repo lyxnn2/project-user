@@ -1,66 +1,68 @@
 repeat task.wait() until game:IsLoaded()
 if not game:IsLoaded() then game.Loaded:Wait() end
 
-while true do task.wait(10)
-    local plr = game.Players.LocalPlayer
-    local Level = plr:GetAttribute('Level')
-    local Present = plr:GetAttribute('Presents26')
-    
-    local result = ('👤Level: '.. tostring(Level)..' '.. '🎁Winter Present: '.. tostring(Present))
-    _G.Horst_SetDescription(result)
+while true do task.wait(5)
+    local suc, err = pcall(function()
+        local plr = game.Players.LocalPlayer
+        local Level = plr:GetAttribute('Level')
+        local Present = plr:GetAttribute('Presents26')
+        
+        local result = ('👤Level: '.. tostring(Level)..' '.. '🎁Winter Present: '.. tostring(Present))
+        _G.Horst_SetDescription(result)
 
 
-    local ReplicatStorage = game:GetService("ReplicatedStorage")
-    local NetWork = ReplicatStorage:WaitForChild("Networking")
-    local FireServer = NetWork:WaitForChild("Settings"):WaitForChild("SettingsEvent")
+        local ReplicatStorage = game:GetService("ReplicatedStorage")
+        local NetWork = ReplicatStorage:WaitForChild("Networking")
+        local FireServer = NetWork:WaitForChild("Settings"):WaitForChild("SettingsEvent")
 
-    local GamePlayTable = {
-        'AutoSkipWaves', 'DisableMatchEndRewardsView'
-    }
+        local GamePlayTable = {
+            'AutoSkipWaves', 'DisableMatchEndRewardsView'
+        }
 
-    local UnitsTable = {
-        'HideOthersUnits', 'DisableVisualEffects', 'DisableStatMultiplierPopups',
-        'DisableDamageIndicators'
-    }
+        local UnitsTable = {
+            'HideOthersUnits', 'DisableVisualEffects', 'DisableStatMultiplierPopups',
+            'DisableDamageIndicators'
+        }
 
-    local EnemiesTable = {
-        'DisableEnemyTags', 'SimplifiedEnemyGui'
-    }
+        local EnemiesTable = {
+            'DisableEnemyTags', 'SimplifiedEnemyGui'
+        }
 
-    local GraphicsTable = {
-        'DisableCameraShake', 'DisableDepthOfField',
-        'LowDetailMode', 'DisableViewCutscenes', 'HideFamiliars', 'SimpleInventoryMode'
-    }
+        local GraphicsTable = {
+            'DisableCameraShake', 'DisableDepthOfField',
+            'LowDetailMode', 'DisableViewCutscenes', 'HideFamiliars', 'SimpleInventoryMode'
+        }
 
-    for _, v in pairs(GamePlayTable) do
-        local CheckName = v
-        local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Gameplay[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
-        if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
-            FireServer:FireServer('Toggle', v)
+        for _, v in pairs(GamePlayTable) do
+            local CheckName = v
+            local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Gameplay[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
+            if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
+                FireServer:FireServer('Toggle', v)
+            end
         end
-    end
 
-    for _, v in pairs(UnitsTable) do
-        local CheckName = v
-        local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
-        if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
-            FireServer:FireServer('Toggle', v)
+        for _, v in pairs(UnitsTable) do
+            local CheckName = v
+            local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
+            if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
+                FireServer:FireServer('Toggle', v)
+            end
         end
-    end
 
-    for _, v in pairs(EnemiesTable) do
-        local CheckName = v
-        local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Enemies[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
-        if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
-            FireServer:FireServer('Toggle', v)
+        for _, v in pairs(EnemiesTable) do
+            local CheckName = v
+            local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Enemies[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
+            if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
+                FireServer:FireServer('Toggle', v)
+            end
         end
-    end
 
-    for _, v in pairs(GraphicsTable) do
-        local CheckName = v
-        local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Graphics[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
-        if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
-            FireServer:FireServer('Toggle', v)
+        for _, v in pairs(GraphicsTable) do
+            local CheckName = v
+            local CheckToggle = game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Graphics[CheckName].Slider.Ball.UIGradient or game:GetService("Players").LocalPlayer.PlayerGui.Windows.Settings.Holder.Main.ScrollingFrame.Units[CheckName].Slider.UIGradient
+            if tostring(CheckToggle.Color) ~= '0 0 0.999989 0.717645 0 1 0 0.984297 0.247032 0 ' then
+                FireServer:FireServer('Toggle', v)
+            end
         end
-    end
+    end)
 end
