@@ -1,7 +1,7 @@
 wait(10)
 while true do task.wait(5)
     local Present = plr:GetAttribute('Presents26')
-    if Present.Value == 3,300,000 then
+    if Present.Value >= 100 then
         _G.Horst_AccountChangeDone()
     end
 end
