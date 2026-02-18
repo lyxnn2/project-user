@@ -2,7 +2,7 @@ wait(10)
 while true do task.wait(5)
     local plr = game.Players.LocalPlayer
     local Present = plr:GetAttribute('Presents26')
-    if Present.Value >= 100 then
+    if Present >= 100 then
         _G.Horst_AccountChangeDone()
     end
 end
